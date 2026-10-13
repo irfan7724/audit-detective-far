@@ -438,22 +438,43 @@
   }
 
   function openBoard() {
-    renderBoard();
-    board.hidden = false;
+  // Always refresh the evidence using latest progress
+  renderBoard();
 
+  // Reset old evidence detail
+  $("s2-detail").hidden = true;
+  selectedFile = null;
+
+  // Show the board
+  board.hidden = false;
+
+  // Scroll only if board is visible on the page
+  if (board.getClientRects().length > 0) {
     board.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
   }
+}
 
-  boardButton.addEventListener("click", () => {
-    if (board.hidden) {
-      openBoard();
-    } else {
-      board.hidden = true;
-    }
-  });
+// Allow other files to open and refresh Evidence Board
+window.auditDetectiveOpenBoard = openBoard;
+
+boardButton.addEventListener("click", () => {
+  // If Game Lobby navigation is available,
+  // open Evidence Board as a proper lobby page.
+  if (typeof window.auditDetectiveShowPage === "function") {
+    window.auditDetectiveShowPage("evidence");
+    return;
+  }
+
+  // Fallback for the original Story Mode
+  if (board.hidden) {
+    openBoard();
+  } else {
+    board.hidden = true;
+  }
+});
 
   $("s2-close-board").addEventListener("click", () => {
     board.hidden = true;
