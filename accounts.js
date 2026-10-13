@@ -370,16 +370,35 @@
 
           accounts.push(account);
 
-          try {
-            saveAccounts(accounts);
-            loadAccount(account);
-            location.reload();
-          } catch {
-            error.textContent =
-              "Could not save account. Check browser storage.";
-          }
+try {
+  // Save the new account without logging in
+  saveAccounts(accounts);
 
-          return;
+  // Return player to the LOGIN tab
+  setMode("login");
+
+  // Keep the new codename ready for login
+  byId("auth-name").value = name;
+
+  // Clear PIN so player must enter it again
+  byId("auth-pin").value = "";
+
+  // Update the account list
+  renderAccounts();
+
+  // Show successful registration message
+  error.textContent =
+    "✅ ACCOUNT CREATED SUCCESSFULLY! Please log in to continue.";
+
+  // Focus on PIN input
+  byId("auth-pin").focus();
+
+} catch {
+  error.textContent =
+    "Could not save account. Check browser storage.";
+}
+
+return;
         }
 
         if (!existing || existing.pin !== pin) {
