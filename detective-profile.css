@@ -1,0 +1,260 @@
+
+/* AUDIT DETECTIVE — DETECTIVE PROFILE */
+
+#detective-profile-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 8px 14px;
+    border: 1px solid #b89b61;
+    border-radius: 40px;
+    background: #1d3049;
+    color: #f2d48f;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#detective-header-avatar {
+    font-size: 23px;
+}
+
+#detective-profile-trigger:hover {
+    background: #304563;
+    border-color: #f1d38c;
+}
+
+#detective-profile-overlay[hidden] {
+    display: none !important;
+}
+
+#detective-profile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(3, 10, 22, 0.86);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 28px 14px;
+    overflow-y: auto;
+}
+
+body.dp-open {
+    overflow: hidden !important;
+}
+
+.detective-profile-card {
+    width: 100%;
+    max-width: 520px;
+    background: linear-gradient(
+        145deg, #1c2e47, #0d192b
+    );
+    border: 1px solid #967d4f;
+    border-radius: 22px;
+    padding: 26px;
+    color: #f1f5fc;
+    box-shadow: 0 20px 65px #0009;
+}
+
+.dp-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: #e1bf76;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+#dp-close {
+    border: 1px solid #53647a;
+    border-radius: 9px;
+    padding: 8px 12px;
+    background: #263952;
+    color: white;
+    cursor: pointer;
+}
+
+.dp-identity {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.dp-avatar {
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 16px;
+    border-radius: 24px;
+    background: #30445e;
+    border: 2px solid #c5a465;
+    font-size: 54px;
+}
+
+.dp-identity h2 {
+    color: #e6c782;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin: 0 0 12px;
+}
+
+.dp-identity h3 {
+    color: #fff;
+    font-size: 25px;
+    margin: 0 0 9px;
+    overflow-wrap: anywhere;
+}
+
+#dp-rank {
+    color: #e6c782;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+#dp-id {
+    color: #a5b6cd;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.dp-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.dp-stats > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    padding: 18px;
+    background: #0b1728;
+    border-radius: 13px;
+}
+
+.dp-stats strong {
+    color: #e9c77e;
+    font-size: 26px;
+}
+
+.dp-stats span {
+    color: #9eb1c9;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.dp-section {
+    border-top: 1px solid #3c506a;
+    padding-top: 19px;
+    margin-bottom: 22px;
+}
+
+.dp-section h4 {
+    color: #e5c57d;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 0 0 14px;
+}
+
+.dp-avatar-options {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.dp-avatar-choice {
+    aspect-ratio: 1;
+    min-width: 0;
+    border: 1px solid #425774;
+    border-radius: 12px;
+    background: #172940;
+    font-size: clamp(20px, 5vw, 29px);
+    cursor: pointer;
+}
+
+.dp-avatar-choice.selected {
+    border: 2px solid #f0cf82;
+    background: #40516a;
+}
+
+#dp-name-form {
+    display: flex;
+    gap: 8px;
+}
+
+#dp-name-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #526783;
+    border-radius: 10px;
+    padding: 12px;
+    background: #0b1728;
+    color: #fff;
+    font: inherit;
+}
+
+#dp-name-form button,
+.dp-achievements {
+    border: 0;
+    border-radius: 10px;
+    background: #d6b36e;
+    color: #101b2b;
+    padding: 12px 15px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#dp-message {
+    color: #d7c185;
+    font-size: 12px;
+    min-height: 18px;
+    margin-top: 10px;
+}
+
+.dp-achievements {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.dp-footnote {
+    text-align: center;
+    color: #8498b3;
+    font-size: 11px;
+    margin: 18px 0 0;
+}
+
+@media (max-width: 600px) {
+    #detective-profile-trigger {
+        padding: 7px 10px;
+    }
+
+    .detective-trigger-label {
+        display: none;
+    }
+
+    .detective-profile-card {
+        padding: 18px;
+    }
+
+    .dp-avatar-options {
+        gap: 5px;
+    }
+
+    #dp-name-form {
+        flex-direction: column;
+    }
+
+    #dp-name-form button {
+        width: 100%;
+    }
+}

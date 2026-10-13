@@ -1,0 +1,297 @@
+
+/* AUDIT DETECTIVE — STORY MODE */
+/* The Ledger Conspiracy */
+
+#story-hub[hidden],
+#story-cutscene[hidden] {
+  display: none !important;
+}
+
+#story-hub,
+#story-hub * ,
+#story-cutscene,
+#story-cutscene * {
+  box-sizing: border-box;
+}
+
+#story-hub {
+  margin: 24px 0;
+  padding: clamp(18px, 3vw, 30px);
+  border: 1px solid rgba(238, 194, 113, .45);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%,
+      rgba(239, 184, 83, .12), transparent 40%),
+    linear-gradient(145deg, #142239, #09111e);
+  color: #eaf2ff;
+  font-family: system-ui, sans-serif;
+}
+
+.story-kicker {
+  color: #72e4e8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+}
+
+.story-heading {
+  margin: 10px 0;
+  color: #ffe5aa;
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1.1;
+}
+
+.story-description {
+  color: #b9cadd;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.story-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.story-summary span {
+  padding: 9px 12px;
+  background: #1c3048;
+  border: 1px solid #435a76;
+  border-radius: 8px;
+  color: #e9d7aa;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.story-chapters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.story-chapter {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #3e526c;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #1b2d44, #111d2e);
+  min-width: 0;
+}
+
+.story-chapter.complete {
+  border-color: #66c99c;
+}
+
+.story-chapter.locked {
+  opacity: .65;
+}
+
+.story-chapter-label {
+  color: #75dce6;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.story-chapter h3 {
+  margin: 10px 0;
+  color: #ffe3a5;
+  font-size: 20px;
+}
+
+.story-chapter p {
+  color: #b9c9da;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.story-case-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 16px 0;
+}
+
+.story-case-tag {
+  padding: 7px 9px;
+  border-radius: 7px;
+  border: 1px solid #53657c;
+  color: #c3d1e1;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.story-case-tag.solved {
+  border-color: #67c99c;
+  background: #1c453b;
+  color: #a6f0c9;
+}
+
+.story-case-tag.next {
+  border-color: #eac67c;
+  color: #ffe2a5;
+}
+
+.story-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid #eac67c;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #ffe5aa, #d4a356);
+  color: #152032;
+  font: 900 12px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.story-button:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.story-button-secondary {
+  background: #22374f;
+  color: #f3e6c7;
+  border-color: #647b95;
+}
+
+.story-hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.story-hub-actions button {
+  flex: 1;
+  min-width: 145px;
+}
+
+#story-cutscene {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  overflow-y: auto;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 8, 16, .96);
+  color: #f0f5ff;
+  font-family: system-ui, sans-serif;
+}
+
+.story-scene-card {
+  width: min(700px, 100%);
+  padding: clamp(22px, 5vw, 40px);
+  border: 1px solid #d7ad68;
+  border-radius: 17px;
+  background:
+    radial-gradient(circle at 85% 5%,
+      rgba(216, 170, 90, .15), transparent 45%),
+    #101c2d;
+  box-shadow: 0 20px 80px rgba(0,0,0,.5);
+  animation: story-appear .35s ease-out;
+}
+
+.story-scene-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.story-scene-counter {
+  color: #9eb4c9;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.story-scene-art {
+  display: grid;
+  place-items: center;
+  height: 160px;
+  margin: 20px 0;
+  border: 1px solid #41536a;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle, #344861, #101929 70%);
+  font-size: 70px;
+}
+
+.story-scene-title {
+  color: #ffe1a1;
+  font-size: clamp(23px, 5vw, 35px);
+  margin: 12px 0;
+}
+
+.story-speaker {
+  color: #6de2e8;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 8px;
+}
+
+.story-dialogue {
+  color: #e0e8f4;
+  font-size: clamp(15px, 2.5vw, 18px);
+  line-height: 1.9;
+  min-height: 110px;
+  white-space: pre-line;
+}
+
+.story-scene-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.story-scene-actions button {
+  min-width: 130px;
+}
+
+.story-note {
+  margin-top: 16px;
+  font-size: 11px;
+  color: #a9bfd4;
+  line-height: 1.7;
+}
+
+@keyframes story-appear {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 650px) {
+  .story-chapters {
+    grid-template-columns: 1fr;
+  }
+
+  .story-scene-art {
+    height: 115px;
+    font-size: 54px;
+  }
+
+  .story-scene-actions button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-scene-card {
+    animation: none;
+  }
+}

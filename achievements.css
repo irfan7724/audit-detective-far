@@ -1,0 +1,286 @@
+
+/* AUDIT DETECTIVE — ACHIEVEMENTS REDESIGN */
+
+body.career-achievements-open
+#lobby-view-content > #ad-dashboard,
+body.career-achievements-open
+#lobby-view-content > #p2-learning {
+    display: none !important;
+}
+
+#career-achievements {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 12px 0 40px;
+    color: #f2f5fb;
+    font-family: inherit;
+}
+
+.career-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.career-eyebrow,
+.career-small {
+    color: #d9b96e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.career-heading h2 {
+    color: #fff;
+    font-size: clamp(26px, 5vw, 38px);
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.career-heading p,
+.career-badge-heading p {
+    color: #9caec7;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.career-emblem {
+    width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    display: grid;
+    place-items: center;
+    font-size: 38px;
+    background: #23344d;
+    border: 1px solid #8d764c;
+    flex-shrink: 0;
+}
+
+.career-profile {
+    background: linear-gradient(
+        145deg, #1b2d47, #111e31
+    );
+    border: 1px solid #40536c;
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 30px;
+    box-shadow: 0 12px 32px #00000024;
+}
+
+.career-profile-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.career-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #30445e;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    border: 2px solid #c7a660;
+    flex-shrink: 0;
+}
+
+.career-profile h3 {
+    color: #fff;
+    font-size: 23px;
+    margin: 7px 0;
+    overflow-wrap: anywhere;
+}
+
+#career-rank {
+    color: #e6c781;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.career-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.career-stats > div {
+    padding: 20px 10px;
+    border-radius: 12px;
+    background: #0c182a;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.career-stats strong {
+    font-size: clamp(19px, 4vw, 28px);
+    color: #e5c57c;
+}
+
+.career-stats span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #aabbd2;
+}
+
+.career-progress-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #dce6f5;
+}
+
+.career-progress-label strong {
+    color: #e5c57c;
+}
+
+.career-track {
+    width: 100%;
+    height: 12px;
+    background: #091423;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+#career-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg, #a77d36, #f0d28b
+    );
+    transition: width 0.35s ease;
+}
+
+.career-badge-heading {
+    margin-bottom: 20px;
+}
+
+.career-badge-heading h3 {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #e5c57c;
+    margin: 0 0 7px;
+}
+
+.career-badge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.career-badge {
+    background: #192a41;
+    border: 1px solid #3c5069;
+    border-radius: 16px;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+    text-align: center;
+    min-width: 0;
+}
+
+.career-badge.unlocked {
+    border-color: #aa8b51;
+    background: linear-gradient(
+        150deg, #26344b, #18283c
+    );
+}
+
+.career-badge.locked {
+    opacity: 0.58;
+}
+
+.career-badge-icon {
+    font-size: 37px;
+    margin-bottom: 4px;
+}
+
+.career-badge strong {
+    color: #f4f5f9;
+    font-size: 14px;
+    letter-spacing: 0.6px;
+}
+
+.career-badge small {
+    color: #a7b7cc;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.career-badge-status {
+    color: #e4c47e;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+}
+
+.career-footer {
+    text-align: center;
+    color: #7f91a9;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-top: 36px;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+    .career-profile {
+        padding: 18px;
+    }
+
+    .career-emblem {
+        width: 55px;
+        height: 55px;
+        font-size: 27px;
+    }
+
+    .career-avatar {
+        width: 58px;
+        height: 58px;
+        font-size: 29px;
+    }
+
+    .career-profile h3 {
+        font-size: 19px;
+    }
+
+    .career-stats {
+        gap: 7px;
+    }
+
+    .career-stats > div {
+        padding: 16px 5px;
+    }
+
+    .career-stats span {
+        font-size: 9px;
+        letter-spacing: 0;
+    }
+
+    .career-badge-grid {
+        gap: 10px;
+    }
+
+    .career-badge {
+        padding: 20px 10px;
+    }
+
+    .career-badge strong {
+        font-size: 12px;
+    }
+}

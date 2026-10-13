@@ -1,0 +1,219 @@
+
+/* AUDIT DETECTIVE — LOCAL ACCOUNTS */
+
+#detective-auth[hidden] {
+  display: none !important;
+}
+
+#detective-auth,
+#detective-auth * {
+  box-sizing: border-box;
+}
+
+#detective-auth {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 15% 15%,
+      rgba(57, 157, 180, .18), transparent 40%),
+    radial-gradient(circle at 90% 80%,
+      rgba(227, 176, 88, .15), transparent 42%),
+    #07101d;
+  color: #eef5ff;
+  font-family: system-ui, sans-serif;
+}
+
+.auth-card {
+  width: min(460px, 100%);
+  padding: clamp(24px, 5vw, 40px);
+  border: 1px solid #b99057;
+  border-radius: 22px;
+  background: linear-gradient(155deg, #1b2c43, #0c1626);
+  box-shadow: 0 25px 90px rgba(0, 0, 0, .55);
+}
+
+.auth-logo {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border: 1px solid #dfbb7c;
+  border-radius: 50%;
+  background: #263a50;
+  font-size: 37px;
+}
+
+.auth-kicker {
+  color: #80e6e9;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.auth-title {
+  color: #ffe3ab;
+  font-size: clamp(25px, 5vw, 35px);
+  text-align: center;
+  margin: 12px 0 8px;
+}
+
+.auth-description {
+  color: #b9cbde;
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.auth-tab {
+  padding: 12px 8px;
+  border: 1px solid #526781;
+  border-radius: 9px;
+  background: #17283c;
+  color: #b9cadd;
+  font: 800 12px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.auth-tab.active {
+  background: #dcb575;
+  border-color: #ffe3a5;
+  color: #122033;
+}
+
+.auth-field {
+  margin-bottom: 16px;
+}
+
+.auth-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #d7e4f3;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #58718a;
+  border-radius: 9px;
+  outline: none;
+  background: #091626;
+  color: #f5f8ff;
+  font: 15px system-ui, sans-serif;
+}
+
+.auth-field input:focus {
+  border-color: #e9c583;
+  box-shadow: 0 0 0 3px rgba(233, 197, 131, .13);
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 15px;
+  margin-top: 7px;
+  border: 1px solid #ffe0a1;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ffe6aa, #d6a65b);
+  color: #142236;
+  font: 900 13px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.auth-error {
+  min-height: 20px;
+  margin: 10px 0;
+  color: #ffb6b6;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.auth-hint {
+  margin-top: 18px;
+  color: #91a9c0;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.auth-account-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 12px 0 18px;
+}
+
+.auth-account-chip {
+  padding: 8px 11px;
+  border: 1px solid #617994;
+  border-radius: 30px;
+  background: #263b52;
+  color: #e7f2ff;
+  font: 700 11px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+#detective-account-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 20px;
+  padding: 14px;
+  border: 1px solid #b58f59;
+  border-radius: 12px;
+  background: #17293d;
+  color: #ffe1a2;
+  font-family: system-ui, sans-serif;
+}
+
+.account-bar-name {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.account-bar-button {
+  padding: 10px 12px;
+  border: 1px solid #7190a8;
+  border-radius: 8px;
+  background: #2a4259;
+  color: #f2f7ff;
+  font: 800 11px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.account-bar-button:hover,
+.auth-submit:hover,
+.auth-account-chip:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 22px 18px;
+  }
+
+  #detective-account-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}

@@ -1,0 +1,360 @@
+
+/*
+ AUDIT DETECTIVE — FAR EDITION
+ ULTIMATE POLISH PART 3
+ Launch Screen, Detective Profile, FYP Launch Tools
+*/
+
+#p3-launch[hidden],
+#p3-profile[hidden],
+#p3-guide[hidden],
+#p3-launch-check[hidden] {
+  display: none !important;
+}
+
+#p3-launch,
+#p3-launch * {
+  box-sizing: border-box;
+}
+
+#p3-launch {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  background:
+    radial-gradient(ellipse at 50% 15%,
+      rgba(224, 178, 95, .16), transparent 45%),
+    radial-gradient(ellipse at 90% 90%,
+      rgba(65, 193, 224, .08), transparent 40%),
+    #060a12;
+  color: #f8f2e7;
+  font-family: system-ui, sans-serif;
+}
+
+#p3-launch::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size: 44px 44px;
+}
+
+.p3-launch-inner {
+  position: relative;
+  width: min(760px, 100%);
+  text-align: center;
+  padding: clamp(24px, 5vw, 54px);
+  border: 1px solid rgba(238, 196, 119, .5);
+  background:
+    linear-gradient(145deg,
+      rgba(25, 37, 55, .96),
+      rgba(8, 13, 24, .98));
+  box-shadow: 0 24px 90px rgba(0,0,0,.55);
+  border-radius: 20px;
+  animation: p3-appear .65s ease both;
+}
+
+.p3-launch-tag {
+  color: #7de8ee;
+  font: 800 11px/1.6 monospace;
+  letter-spacing: 3px;
+}
+
+.p3-launch-emblem {
+  display: grid;
+  place-items: center;
+  margin: 22px auto;
+  width: 112px;
+  height: 112px;
+  border: 2px solid #eac47d;
+  border-radius: 50%;
+  background: radial-gradient(circle,#3d3526,#151d2a);
+  box-shadow: 0 0 45px rgba(234,196,125,.2);
+  font-size: 53px;
+  animation: p3-float 3s ease-in-out infinite;
+}
+
+.p3-launch-title {
+  margin: 15px 0;
+  font-size: clamp(37px, 8vw, 76px);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: #fff3d4;
+}
+
+.p3-launch-title span {
+  color: #edc67d;
+}
+
+.p3-launch-subtitle {
+  color: #7de8ee;
+  letter-spacing: 5px;
+  font-size: clamp(12px, 2vw, 17px);
+  font-weight: 900;
+}
+
+.p3-launch-description {
+  max-width: 530px;
+  margin: 24px auto;
+  color: #c1ccdb;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.p3-launch-stats {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.p3-launch-stat {
+  padding: 15px 8px;
+  border: 1px solid #485469;
+  border-radius: 9px;
+  background: rgba(255,255,255,.035);
+}
+
+.p3-launch-stat strong {
+  display: block;
+  color: #f1d08e;
+  font-size: 24px;
+}
+
+.p3-launch-stat small {
+  display: block;
+  color: #b2c0d1;
+  margin-top: 5px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.p3-primary {
+  display: block;
+  width: 100%;
+  padding: 16px 18px;
+  margin-top: 13px;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(135deg,#ffe7ae,#d5a553);
+  color: #172032;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.p3-primary:hover {
+  filter: brightness(1.08);
+}
+
+.p3-secondary {
+  padding: 12px 15px;
+  border: 1px solid #60748c;
+  border-radius: 8px;
+  background: #24354a;
+  color: #f0f5ff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.p3-profile-box {
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid #455c75;
+  border-radius: 12px;
+  background: #121f31;
+  text-align: left;
+}
+
+.p3-profile-box label {
+  display: block;
+  margin-bottom: 9px;
+  color: #f1d08e;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.p3-name-input {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #6a8099;
+  border-radius: 8px;
+  background: #091422;
+  color: white;
+  font-size: 17px;
+}
+
+.p3-name-input:focus {
+  outline: 2px solid #7de8ee;
+}
+
+.p3-profile-hint {
+  margin: 9px 0 0;
+  color: #b0bfd0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.p3-launch-error {
+  color: #ff9fae;
+  font-size: 12px;
+  font-weight: 800;
+  min-height: 18px;
+  margin-top: 10px;
+}
+
+.p3-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.p3-toolbar button {
+  padding: 11px 14px;
+  border: 1px solid #60748c;
+  border-radius: 8px;
+  background: #24354a;
+  color: #edf5ff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.p3-card {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid rgba(237,198,125,.4);
+  border-radius: 14px;
+  background: #142238;
+  color: #eaf1fc;
+}
+
+.p3-card h3 {
+  margin-top: 0;
+  color: #f1d08e;
+}
+
+.p3-card p,
+.p3-card li {
+  color: #c8d6e7;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.p3-profile-grid {
+  display: grid;
+  grid-template-columns: 80px minmax(0,1fr);
+  gap: 15px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.p3-avatar {
+  display: grid;
+  place-items: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid #eac47d;
+  background: #27344a;
+  font-size: 36px;
+}
+
+.p3-profile-name {
+  color: #ffe8b1;
+  font-size: clamp(19px,3vw,27px);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.p3-profile-rank {
+  color: #90dce8;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.p3-check-list {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.p3-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #3d536d;
+  background: #1c2c41;
+  color: #dce9f8;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.p3-check-item.good {
+  border-color: #3e9575;
+}
+
+.p3-check-item.warn {
+  border-color: #ba8452;
+}
+
+.p3-small-note {
+  font-size: 11px;
+  color: #aebfd3;
+  line-height: 1.8;
+}
+
+@keyframes p3-appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes p3-float {
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 500px) {
+  .p3-launch-stats {
+    gap: 6px;
+  }
+
+  .p3-launch-stat strong {
+    font-size: 19px;
+  }
+
+  .p3-launch-tag {
+    letter-spacing: 1.5px;
+  }
+
+  .p3-profile-grid {
+    grid-template-columns: 60px minmax(0,1fr);
+  }
+
+  .p3-avatar {
+    width: 55px;
+    height: 55px;
+    font-size: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p3-launch-inner,
+  .p3-launch-emblem {
+    animation: none !important;
+  }
+}

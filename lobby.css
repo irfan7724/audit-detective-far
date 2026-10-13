@@ -1,0 +1,315 @@
+
+/* AUDIT DETECTIVE — GAME LOBBY */
+
+#game-lobby,
+#game-lobby * {
+  box-sizing: border-box;
+}
+
+#game-lobby[hidden],
+#lobby-view[hidden] {
+  display: none !important;
+}
+
+#game-lobby {
+  min-height: 100vh;
+  padding: 20px clamp(14px, 4vw, 48px) 50px;
+  background:
+    radial-gradient(circle at 15% 15%, #19374a 0%, transparent 38%),
+    radial-gradient(circle at 85% 85%, #382e28 0%, transparent 40%),
+    #081321;
+  color: #eaf3ff;
+  font-family: system-ui, sans-serif;
+}
+
+.lobby-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.lobby-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0 20px;
+  border-bottom: 1px solid #35495d;
+}
+
+.lobby-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lobby-logo {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border: 1px solid #d7b171;
+  border-radius: 12px;
+  background: #23394d;
+  font-size: 25px;
+}
+
+.lobby-brand strong {
+  display: block;
+  color: #ffe0a2;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.lobby-brand small {
+  display: block;
+  margin-top: 4px;
+  color: #7fe0e8;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.lobby-logout {
+  padding: 11px 15px;
+  border: 1px solid #a7835a;
+  border-radius: 9px;
+  background: #2d3646;
+  color: #ffe0a2;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.lobby-hero {
+  margin: 25px 0;
+  padding: clamp(20px, 4vw, 35px);
+  border: 1px solid #53647b;
+  border-radius: 18px;
+  background: linear-gradient(140deg, #1e344b, #102034);
+}
+
+.lobby-kicker {
+  color: #80e1e9;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.lobby-heading {
+  margin: 10px 0;
+  color: #ffe0a2;
+  font-size: clamp(26px, 5vw, 43px);
+}
+
+.lobby-muted {
+  color: #b9cbde;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.lobby-progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 25px;
+  font-size: 13px;
+}
+
+.lobby-track {
+  height: 11px;
+  margin: 10px 0 18px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #34485e;
+}
+
+.lobby-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #7bdce3, #e5b96e);
+  transition: width .35s ease;
+}
+
+.lobby-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lobby-stat {
+  padding: 10px 15px;
+  border: 1px solid #4d657a;
+  border-radius: 9px;
+  background: #263d53;
+  color: #f4d59d;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.lobby-section-title {
+  margin: 25px 0 14px;
+  color: #8de0e8;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.lobby-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.lobby-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 195px;
+  padding: 25px;
+  border: 1px solid #50667c;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #20364b, #122236);
+  color: #eaf3ff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s;
+}
+
+.lobby-card:hover,
+.lobby-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: #e7c07f;
+}
+
+.lobby-card-icon {
+  font-size: 37px;
+}
+
+.lobby-card-title {
+  margin: 15px 0 7px;
+  color: #ffe1a5;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.lobby-card-desc {
+  color: #b6c8db;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.lobby-card-arrow {
+  align-self: flex-end;
+  margin-top: auto;
+  color: #81e0e7;
+  font-size: 21px;
+}
+
+.lobby-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.lobby-settings-btn,
+.lobby-back {
+  padding: 12px 18px;
+  border: 1px solid #68829a;
+  border-radius: 10px;
+  background: #263d53;
+  color: #eaf3ff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#lobby-view {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 22px 14px 60px;
+}
+
+.lobby-view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding: 16px;
+  border: 1px solid #53647b;
+  border-radius: 12px;
+  background: #17283d;
+  color: #ffe1a5;
+}
+
+.lobby-view-title {
+  margin: 0;
+  font-size: clamp(19px, 4vw, 27px);
+}
+
+.lobby-empty {
+  padding: 22px;
+  border: 1px solid #52677d;
+  border-radius: 12px;
+  background: #17283d;
+  color: #d3e0ed;
+  line-height: 1.8;
+}
+
+body.lobby-home #welcome-screen,
+body.lobby-home #story-hub,
+body.lobby-home #s2-board,
+body.lobby-home #launch-control,
+body.lobby-home #detective-account-bar {
+  display: none !important;
+}
+
+body.lobby-section #game-lobby {
+  display: none !important;
+}
+
+/* Hide only the known menu sections.
+   Active original case screens remain untouched. */
+body.lobby-section #welcome-screen,
+body.lobby-section #detective-account-bar {
+  display: none !important;
+}
+
+body.lobby-home #lobby-view {
+  display: none !important;
+}
+
+@media (max-width: 620px) {
+  .lobby-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .lobby-card {
+    min-height: 155px;
+    padding: 20px;
+  }
+
+  .lobby-header {
+    align-items: flex-start;
+  }
+
+  .lobby-brand strong {
+    font-size: 12px;
+  }
+
+  .lobby-logout {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .lobby-view-header {
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lobby-card,
+  .lobby-fill {
+    transition: none;
+  }
+}

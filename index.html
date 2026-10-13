@@ -1,0 +1,491 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Detective — FAR Edition</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="polish.css">
+<link rel="stylesheet" href="polish2.css">
+<link rel="stylesheet" href="polish3.css">
+<link rel="stylesheet" href="story.css">
+<link rel="stylesheet" href="story2.css">
+<link rel="stylesheet" href="launch.css">
+<link rel="stylesheet" href="accounts.css">
+<link rel="stylesheet" href="lobby.css">
+<link rel="stylesheet" href="achievements.css">
+<link rel="stylesheet" href="detective-profile.css">
+<main class="game-container">
+
+<header class="game-header">
+  <p>FINANCIAL INVESTIGATION UNIT</p>
+  <h1>AUDIT DETECTIVE</h1>
+  <span>FAR EDITION</span>
+  <div class="player-stats">
+    <span>⭐ XP: <b id="total-xp">0</b></span>
+    <span>🏅 <b id="detective-rank">Junior Detective</b></span>
+  </div>
+</header>
+
+<!-- MAIN MENU -->
+<section id="welcome-screen">
+  <h2>DETECTIVE CASE FILES</h2>
+  <p>Investigate financial records and uncover accounting errors.</p>
+  <div class="case-grid">
+    <div class="case-card">
+      <span class="case-number">CASE 001</span>
+      <h3>The Missing RM500</h3>
+      <p>Depreciation Investigation</p>
+      <span id="case1-status">AVAILABLE</span>
+      <button id="start-case1">START INVESTIGATION</button>
+    </div>
+    <div class="case-card">
+      <span class="case-number">CASE 002</span>
+      <h3>Warehouse Mystery</h3>
+      <p>Inventory Valuation</p>
+      <span id="case2-status">LOCKED 🔒</span>
+      <button id="start-case2" disabled>LOCKED 🔒</button>
+    </div>
+    <div class="case-card">
+      <span class="case-number">CASE 003</span>
+      <h3>The Cash Discrepancy</h3>
+      <p>Bank Reconciliation</p>
+      <span id="case3-status">LOCKED 🔒</span>
+      <button id="start-case3" disabled>LOCKED 🔒</button>
+    </div>
+    <div class="case-card">
+      <span class="case-number">CASE 004</span>
+      <h3>The Unpaid Invoice</h3>
+      <p>Accrued Expenses</p>
+      <span id="case4-status">LOCKED 🔒</span>
+      <button id="start-case4" disabled>LOCKED 🔒</button>
+    </div>
+  </div>
+</section>
+
+<!-- CASE 001 AND 002 -->
+<section id="investigation-screen" hidden>
+  <div class="mission-bar">
+    <div>
+      <strong id="current-case-number"></strong>
+      <p id="current-case-title"></p>
+    </div>
+    <div>EVIDENCE: <span id="evidence-count">0</span>/3</div>
+  </div>
+
+  <p class="mission-instruction" id="mission-instruction"></p>
+
+  <div class="scene-toolbar">
+    <button id="open-notebook" class="notebook-button">
+      📓 OPEN NOTEBOOK <span id="notebook-count">0/3</span>
+    </button>
+  </div>
+
+  <div id="office-room" class="scene office-room">
+    <button class="object computer" data-evidence="computer"
+      aria-label="Examine office computer">COMPUTER</button>
+    <button class="object cabinet" data-evidence="invoice"
+      aria-label="Examine file cabinet">FILE CABINET</button>
+    <button class="object asset" data-evidence="asset"
+      aria-label="Examine asset file">ASSET FILE</button>
+  </div>
+
+  <div id="warehouse-room" class="scene warehouse-room" hidden>
+    <button class="object warehouse-computer" data-evidence="computer"
+      aria-label="Examine warehouse computer">COMPUTER</button>
+    <button class="object warehouse-boxes" data-evidence="invoice"
+      aria-label="Examine inventory boxes">INVENTORY BOXES</button>
+    <button class="object warehouse-report" data-evidence="asset"
+      aria-label="Examine sales report">REPORT</button>
+  </div>
+
+  <div class="inventory">
+    <h3>🧳 EVIDENCE INVENTORY</h3>
+    <div id="inventory-items">No evidence collected yet.</div>
+  </div>
+
+  <button id="solve-button" disabled>SOLVE THE CASE 🔒</button>
+  <button id="back-to-menu" class="secondary-button">
+    BACK TO CASE FILES
+  </button>
+</section>
+
+<!-- CASE 001 AND 002 PUZZLES -->
+<section id="puzzle-screen" hidden>
+  <div class="puzzle-header">
+    <p>FINANCIAL INVESTIGATION REPORT</p>
+    <h2 id="puzzle-case-title"></h2>
+    <span id="puzzle-topic"></span>
+  </div>
+
+  <div class="puzzle-evidence">
+    <h3>📂 COLLECTED EVIDENCE</h3>
+    <div id="puzzle-evidence-grid" class="puzzle-evidence-grid"></div>
+  </div>
+
+  <div class="puzzle-card">
+    <h3>🔍 YOUR INVESTIGATION</h3>
+    <p id="puzzle-question"></p>
+    <label id="answer1-label" for="answer1"></label>
+    <input id="answer1" type="number" min="0" step="0.01"
+      placeholder="Enter amount in RM">
+    <label id="answer2-label" for="answer2"></label>
+    <input id="answer2" type="number" min="0" step="0.01"
+      placeholder="Enter amount in RM">
+    <button id="open-puzzle-notebook" class="notebook-button">
+      📓 REVIEW DETECTIVE NOTEBOOK
+    </button>
+    <button id="submit-puzzle">SUBMIT INVESTIGATION</button>
+    <div id="puzzle-feedback" aria-live="polite"></div>
+  </div>
+
+  <div id="case-result" class="result-card" hidden>
+    <h2>🏆 CASE SOLVED!</h2>
+    <p id="result-explanation"></p>
+    <h3 id="xp-reward">+100 XP</h3>
+    <p id="result-xp"></p>
+    <button id="next-case-button">CONTINUE</button>
+  </div>
+</section>
+
+<!-- CASE 003 MATCHING -->
+<section id="matching-screen" hidden>
+  <div class="mission-bar">
+    <div>
+      <strong>CASE 003</strong>
+      <p>The Cash Discrepancy</p>
+    </div>
+    <div>MATCHED: <span id="match-count">0</span>/2</div>
+  </div>
+
+  <div class="case-intro">
+    <span class="case-number">FINANCE DEPARTMENT</span>
+    <h2>🏦 The Cash Discrepancy</h2>
+    <p>
+      Compare the Cash Book and Bank Statement.
+      Match transactions appearing in both records.
+    </p>
+  </div>
+
+  <div class="balance-strip">
+    <div>
+      <small>CASH BOOK BALANCE</small>
+      <strong>RM10,000</strong>
+    </div>
+    <div>
+      <small>BANK STATEMENT BALANCE</small>
+      <strong>RM9,100</strong>
+    </div>
+  </div>
+
+  <div class="matching-grid">
+    <div class="document-panel">
+      <div class="document-heading">
+        <span>📘</span>
+        <div>
+          <h3>CASH BOOK</h3>
+          <small>Company records</small>
+        </div>
+      </div>
+      <div id="cash-transactions" class="transaction-list"></div>
+    </div>
+
+    <div class="document-panel">
+      <div class="document-heading">
+        <span>🏦</span>
+        <div>
+          <h3>BANK STATEMENT</h3>
+          <small>Bank records</small>
+        </div>
+      </div>
+      <div id="bank-transactions" class="transaction-list"></div>
+    </div>
+  </div>
+
+  <p class="selection-hint">
+    Select one transaction from each document.
+  </p>
+  <button id="match-button" disabled>MATCH TRANSACTIONS</button>
+  <div id="match-feedback" class="feedback" aria-live="polite"></div>
+
+  <div id="unmatched-panel" class="puzzle-evidence" hidden>
+    <h3>🔍 UNMATCHED TRANSACTIONS</h3>
+    <div id="unmatched-items"></div>
+    <p>Investigate these items before preparing the reconciliation.</p>
+    <button id="go-to-reconciliation">
+      PREPARE BANK RECONCILIATION →
+    </button>
+  </div>
+
+  <button id="matching-back" class="secondary-button">
+    BACK TO CASE FILES
+  </button>
+</section>
+
+<!-- CASE 003 RECONCILIATION -->
+<section id="reconciliation-screen" hidden>
+  <div class="puzzle-header">
+    <p>CASE 003 — FINAL INVESTIGATION</p>
+    <h2>Bank Reconciliation</h2>
+    <span>RECONCILE BOTH BALANCES</span>
+  </div>
+
+  <div class="puzzle-evidence">
+    <h3>📂 INVESTIGATION FINDINGS</h3>
+    <div class="puzzle-evidence-grid">
+      <div><small>CASH BOOK BALANCE</small><strong>RM10,000</strong></div>
+      <div><small>BANK STATEMENT BALANCE</small><strong>RM9,100</strong></div>
+      <div><small>BANK CHARGES</small><strong>RM100</strong></div>
+      <div><small>OUTSTANDING CHEQUE</small><strong>RM1,200</strong></div>
+      <div><small>DEPOSIT IN TRANSIT</small><strong>RM2,000</strong></div>
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <h3>🧮 SOLVE THE RECONCILIATION</h3>
+    <p>
+      Adjust the Cash Book for bank charges.
+      Adjust the Bank Statement for the deposit in transit
+      and outstanding cheque.
+    </p>
+    <label for="cash-adjusted">Adjusted Cash Book Balance (RM)</label>
+    <input id="cash-adjusted" type="number" min="0" step="0.01">
+    <label for="bank-adjusted">Adjusted Bank Statement Balance (RM)</label>
+    <input id="bank-adjusted" type="number" min="0" step="0.01">
+    <button id="open-case3-notebook" class="notebook-button">
+      📓 REVIEW CASE NOTES
+    </button>
+    <button id="submit-reconciliation">SUBMIT RECONCILIATION</button>
+    <div id="reconciliation-feedback" aria-live="polite"></div>
+  </div>
+
+  <div id="case3-result" class="result-card" hidden>
+    <h2>🏆 CASE 003 SOLVED!</h2>
+    <p>
+      Adjusted Cash Book = RM10,000 − RM100 = RM9,900.
+      Adjusted Bank Statement = RM9,100 + RM2,000 − RM1,200
+      = RM9,900.
+    </p>
+    <h3 id="case3-reward">+100 XP</h3>
+    <p id="case3-total-xp"></p>
+    <button id="finish-case3">CONTINUE TO CASE 004</button>
+  </div>
+</section>
+
+<!-- CASE 004 DOCUMENT SORTING -->
+<section id="sorting-screen" hidden>
+  <div class="mission-bar">
+    <div>
+      <strong>CASE 004</strong>
+      <p>The Unpaid Invoice</p>
+    </div>
+    <div>SORTED: <span id="sort-count">0</span>/4</div>
+  </div>
+
+  <div class="case-intro">
+    <span class="case-number">YEAR-END INVESTIGATION</span>
+    <h2>📨 The Unpaid Invoice</h2>
+    <p>
+      Financial year-end: 31 December 2026.
+      Examine each document and decide whether it should
+      be recorded as an accrued expense.
+    </p>
+  </div>
+
+  <div class="case4-progress">
+    <span>DOCUMENT CLASSIFICATION</span>
+    <strong id="sort-progress-label">0 / 4</strong>
+    <div class="progress-track">
+      <div id="sort-progress-fill" class="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="sorting-workspace">
+    <div class="document-preview">
+      <div class="paper-top">
+        <span>CONFIDENTIAL FINANCIAL DOCUMENT</span>
+        <span id="document-number">01 / 04</span>
+      </div>
+      <div class="paper-icon" id="document-icon">📄</div>
+      <h3 id="document-title"></h3>
+      <div class="paper-details">
+        <p><strong>Reference:</strong> <span id="document-reference"></span></p>
+        <p><strong>Service Period:</strong> <span id="document-period"></span></p>
+        <p><strong>Payment Status:</strong> <span id="document-payment"></span></p>
+      </div>
+      <div class="paper-amount" id="document-amount"></div>
+      <p id="document-description" class="paper-description"></p>
+    </div>
+
+    <div class="sorting-controls">
+      <h3>🔎 CLASSIFY THIS DOCUMENT</h3>
+      <p>Choose the correct accounting treatment.</p>
+      <div class="sorting-options">
+        <button id="choose-accrued" class="sort-choice accrued-choice">
+          ACCRUED EXPENSE
+          <small>Expense incurred but not yet paid or recorded</small>
+        </button>
+        <button id="choose-not-accrued" class="sort-choice other-choice">
+          NOT ACCRUED
+          <small>No accrued expense adjustment required</small>
+        </button>
+      </div>
+      <div id="sort-feedback" class="feedback" aria-live="polite"></div>
+      <button id="next-document" hidden>NEXT DOCUMENT →</button>
+    </div>
+  </div>
+
+  <div id="sorting-complete" class="puzzle-evidence" hidden>
+    <h3>📂 DOCUMENT REVIEW COMPLETED</h3>
+    <div id="sorting-summary"></div>
+    <button id="open-case4-notebook" class="notebook-button">
+      📓 REVIEW DETECTIVE NOTEBOOK
+    </button>
+    <button id="go-to-accrual">CALCULATE ACCRUED EXPENSES →</button>
+  </div>
+
+  <button id="sorting-back" class="secondary-button">
+    BACK TO CASE FILES
+  </button>
+</section>
+
+<!-- CASE 004 CALCULATION -->
+<section id="accrual-screen" hidden>
+  <div class="puzzle-header">
+    <p>CASE 004 — FINAL INVESTIGATION</p>
+    <h2>Accrued Expenses Adjustment</h2>
+    <span>YEAR ENDED 31 DECEMBER 2026</span>
+  </div>
+
+  <div class="puzzle-evidence">
+    <h3>📂 DOCUMENT REVIEW</h3>
+    <div id="accrual-evidence-grid" class="puzzle-evidence-grid"></div>
+  </div>
+
+  <div class="puzzle-card">
+    <h3>🧮 SOLVE THE CASE</h3>
+    <p>
+      Calculate the total accrued expenses that should be
+      recognised as at 31 December 2026.
+    </p>
+    <label for="accrual-answer">Total Accrued Expenses (RM)</label>
+    <input id="accrual-answer" type="number" min="0" step="0.01"
+      placeholder="Enter total accrued expenses">
+    <button id="open-accrual-notebook" class="notebook-button">
+      📓 REVIEW DETECTIVE NOTEBOOK
+    </button>
+    <button id="submit-accrual">SUBMIT INVESTIGATION</button>
+    <div id="accrual-feedback" aria-live="polite"></div>
+  </div>
+
+  <div id="case4-result" class="result-card" hidden>
+    <h2>🏆 CASE 004 SOLVED!</h2>
+    <p>
+      Electricity RM600 + Cleaning RM400 = RM1,000.
+      These expenses were incurred in December but remained
+      unpaid and unrecorded at year-end.
+      The adjusting entry is Dr Expenses RM1,000
+      and Cr Accrued Expenses RM1,000.
+    </p>
+    <h3 id="case4-reward">+100 XP</h3>
+    <p id="case4-total-xp"></p>
+    <button id="finish-case4">BACK TO CASE FILES</button>
+  </div>
+</section>
+
+<!-- EVIDENCE DIALOG -->
+<div id="evidence-modal" class="modal" hidden>
+  <div class="modal-content" role="dialog" aria-modal="true"
+    aria-labelledby="modal-title">
+    <p id="modal-step" class="modal-step"></p>
+    <h2 id="modal-title"></h2>
+    <p id="modal-description"></p>
+    <button id="examine-button" hidden>EXAMINE OBJECT</button>
+    <button id="collect-button" hidden>COLLECT EVIDENCE</button>
+    <button id="close-button" class="secondary-button">CLOSE</button>
+  </div>
+</div>
+
+<!-- WAREHOUSE MANAGER -->
+<div id="manager-modal" class="modal" hidden>
+  <div class="modal-content" role="dialog" aria-modal="true"
+    aria-labelledby="manager-title">
+    <p class="modal-step">WAREHOUSE MANAGER</p>
+    <h2 id="manager-title">A Suspicious Statement</h2>
+    <p>
+      "Our inventory is worth RM8,000.
+      There is nothing wrong with our records!"
+    </p>
+    <p class="dialog-hint">
+      Detective, investigate the warehouse and verify this claim.
+    </p>
+    <button id="manager-continue">BEGIN WAREHOUSE SEARCH</button>
+  </div>
+</div>
+
+<!-- SHARED NOTEBOOK -->
+<div id="notebook-modal" class="modal notebook-modal" hidden>
+  <div class="notebook-content" role="dialog" aria-modal="true"
+    aria-labelledby="notebook-title">
+    <div class="notebook-heading">
+      <div>
+        <p class="modal-step">FINANCIAL INVESTIGATION UNIT</p>
+        <h2 id="notebook-title">📓 DETECTIVE NOTEBOOK</h2>
+        <span id="notebook-case-name"></span>
+      </div>
+      <button id="close-notebook" class="secondary-button">
+        ✕ CLOSE
+      </button>
+    </div>
+
+    <div class="notebook-progress">
+      <span>Investigation Progress</span>
+      <strong id="notebook-progress-text">0 / 3</strong>
+      <div class="progress-track">
+        <div id="notebook-progress-fill" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="notebook-section">
+      <h3>🎯 CASE OBJECTIVE</h3>
+      <p id="notebook-objective"></p>
+    </div>
+
+    <div class="notebook-section">
+      <h3>📂 EVIDENCE RECORDS</h3>
+      <div id="notebook-evidence-list" class="notebook-evidence-list"></div>
+    </div>
+
+    <div class="notebook-section formula-section">
+      <h3>🧮 ACCOUNTING REFERENCE</h3>
+      <p id="notebook-formula"></p>
+    </div>
+
+    <button id="notebook-return" class="notebook-return">
+      RETURN TO INVESTIGATION
+    </button>
+  </div>
+</div>
+
+<script src="accounts.js"></script>
+<script src="script.js"></script>
+<script src="case7.js"></script>
+<script src="case8.js"></script>
+<script src="case9.js"></script>
+<script src="case10.js"></script>
+<script src="polish.js"></script>
+<script src="polish2.js"></script>
+<script src="polish3.js"></script>
+<script src="greeting.js"></script>
+<script src="story.js"></script>
+<script src="story2.js"></script>
+<script src="launch.js"></script>
+<script src="scroll-fix.js"></script>
+<script src="lobby.js"></script>
+<script src="lobby-navigation.js"></script>
+<script src="achievements.js"></script>
+<script src="detective-profile.js"></script>
+<script src="avatar-sync.js"></script>
+</body>
+</html>
