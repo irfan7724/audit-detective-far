@@ -461,19 +461,17 @@
 window.auditDetectiveOpenBoard = openBoard;
 
 boardButton.addEventListener("click", () => {
-  // If Game Lobby navigation is available,
-  // open Evidence Board as a proper lobby page.
-  if (typeof window.auditDetectiveShowPage === "function") {
-    window.auditDetectiveShowPage("evidence");
+  const evidenceLobbyButton = document.querySelector(
+    '[data-lobby-page="evidence"]'
+  );
+
+  if (evidenceLobbyButton) {
+    evidenceLobbyButton.click();
     return;
   }
 
-  // Fallback for the original Story Mode
-  if (board.hidden) {
-    openBoard();
-  } else {
-    board.hidden = true;
-  }
+  // Fallback if Game Lobby is unavailable
+  openBoard();
 });
 
   $("s2-close-board").addEventListener("click", () => {
