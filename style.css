@@ -200,11 +200,11 @@ button:focus-visible {
 }
 
 .office-room {
-  background-image: url("./images/office-room.jpg");
+    background-image: url("./office-room.jpg");
 }
 
 .warehouse-room {
-  background-image: url("./images/warehouse-room.jpg");
+    background-image: url("./warehouse-room.jpg");
 }
 
 .object {
